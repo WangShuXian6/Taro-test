@@ -1,10 +1,10 @@
 import {ComponentClass} from 'react'
 import Taro, {Component, Config} from '@tarojs/taro'
-import {View, Button, Text,Image} from '@tarojs/components'
+import {View, Button, Text, Image} from '@tarojs/components'
 import {connect} from '@tarojs/redux'
 
 import {add, minus, asyncAdd} from '../../actions/counter'
-import {updateImages,asyncUpdateImages} from "../../actions/images";
+import {updateImages, asyncUpdateImages, asyncAddImage} from "../../actions/images";
 
 import './index.less'
 
@@ -25,7 +25,7 @@ type PageStateProps = {
         num: number
     },
     images: {
-        images: any
+        list: any
     }
 }
 
@@ -34,7 +34,8 @@ type PageDispatchProps = {
     dec: () => void
     asyncAdd: () => any,
     updateImages: (data) => any,
-    asyncUpdateImages: () => any
+    asyncUpdateImages: () => any,
+    asyncAddImage: () => any
 }
 
 type PageOwnProps = {}
@@ -66,11 +67,14 @@ interface Index {
     asyncUpdateImages() {
         dispatch(asyncUpdateImages())
     },
+    asyncAddImage() {
+        dispatch(asyncAddImage())
+    }
 }))
 class Index extends Component {
-    constructor(){
+    constructor() {
         super(...arguments)
-        this.state={
+        this.state = {
             cardList: [],
         }
     }
@@ -84,6 +88,10 @@ class Index extends Component {
      */
     config: Config = {
         navigationBarTitleText: '首页'
+    }
+
+    async componentDidMount() {
+        this.props.asyncUpdateImages()
     }
 
     componentWillReceiveProps(nextProps) {
@@ -115,14 +123,14 @@ class Index extends Component {
 
         }
         console.log('this.props-', this.props)
-        console.log('this.props.images.images[0]--', this.props.images.images[0].image)
+        console.log('this.props.images.list[0]--', this.props.images.list[0].image)
     }
 
-    uploadingImage(){
-        return new Promise((resolve)=>{
-            setTimeout(()=>{
-                resolve (snowImage)
-            },2000)
+    uploadingImage() {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(snowImage)
+            }, 2000)
         })
     }
 
@@ -140,6 +148,10 @@ class Index extends Component {
         })
     }
 
+    addImage(){
+        this.props.asyncAddImage()
+    }
+
     render() {
         return (
             <View className='index'>
@@ -151,10 +163,11 @@ class Index extends Component {
 
                 <View className='upload'>
                     <Text className='upload-button' onClick={this.asyncUpload.bind(this)}>模拟上传图片</Text>
+                    <Text className='image-length'>{this.props.images.images.length}</Text>
                     <View className='props-wrapper'>
                         <Text>使用props数据</Text>
                         {
-                            this.props.images.images.map((item)=>{
+                            this.props.images.list.map((item) => {
                                 return (
                                     <Image
                                         className='card-image'
@@ -168,7 +181,7 @@ class Index extends Component {
                     <View className='state-wrapper'>
                         <Text>使用state数据</Text>
                         {
-                            this.state.cardList.map((item)=>{
+                            this.state.cardList.map((item) => {
                                 return (
                                     <Image
                                         className='card-image'
@@ -182,7 +195,7 @@ class Index extends Component {
                     <View className='props-direct-wrapper'>
                         <Text>使用props数据</Text>
                         {
-                            this.props.images.images.map((item)=>{
+                            this.props.images.list.map((item) => {
                                 return (
                                     <Image
                                         className='card-image'
@@ -191,6 +204,10 @@ class Index extends Component {
                                 )
                             })
                         }
+                    </View>
+                    <View className='image-number-wrapper'>
+                        <Text className='add-image' onClick={this.addImage.bind(this)}>asyncAddImage</Text>
+                        <Text className='image-number'>{this.props.images.number}</Text>
                     </View>
 
 

@@ -1,4 +1,4 @@
-import {UPDATE_IMAGES, CLEAR_IMAGES} from '../constants/images'
+import {UPDATE_IMAGES, CLEAR_IMAGES, ADD_IMAGES} from '../constants/images'
 import snowImage from '../pages/index/snow.jpg'
 import {add} from "./counter";
 
@@ -25,6 +25,21 @@ export function asyncUpdateImages() {
     return dispatch => {
         setTimeout(() => {
             dispatch(updateImages(imageObj))
+        }, 2000)
+
+    }
+}
+
+export const addImage=()=>{
+    return {
+        type: ADD_IMAGES
+    }
+}
+
+export function asyncAddImage() {
+    return dispatch => {
+        setTimeout(() => {
+            dispatch(addImage())
         }, 2000)
 
     }

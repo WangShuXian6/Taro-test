@@ -8,7 +8,7 @@ const INITIAL_STATE = {
 export default function images(state = INITIAL_STATE, action) {
     switch (action.type) {
         case UPDATE_IMAGES:
-            const newImages = state.list
+            const newImages = state.list.slice(0)
             newImages.push(action.data)
             return Object.assign({}, state, {list: newImages})
 

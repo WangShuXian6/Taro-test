@@ -4,7 +4,7 @@ import {View, Button, Text,Image} from '@tarojs/components'
 import {connect} from '@tarojs/redux'
 
 import {add, minus, asyncAdd} from '../../actions/counter'
-import {updateImages} from "../../actions/images";
+import {updateImages,asyncUpdateImages} from "../../actions/images";
 
 import './index.less'
 
@@ -34,6 +34,7 @@ type PageDispatchProps = {
     dec: () => void
     asyncAdd: () => any,
     updateImages: (data) => any,
+    asyncUpdateImages: () => any
 }
 
 type PageOwnProps = {}
@@ -61,7 +62,10 @@ interface Index {
     },
     updateImages(data) {
         dispatch(updateImages(data))
-    }
+    },
+    asyncUpdateImages() {
+        dispatch(asyncUpdateImages())
+    },
 }))
 class Index extends Component {
     constructor(){
@@ -174,6 +178,21 @@ class Index extends Component {
                             })
                         }
                     </View>
+                    <Text className='upload-button' onClick={this.props.asyncUpdateImages}>直接使用props的动作上传图片</Text>
+                    <View className='props-direct-wrapper'>
+                        <Text>使用props数据</Text>
+                        {
+                            this.props.images.images.map((item)=>{
+                                return (
+                                    <Image
+                                        className='card-image'
+                                        src={item.image}
+                                    />
+                                )
+                            })
+                        }
+                    </View>
+
 
                 </View>
 

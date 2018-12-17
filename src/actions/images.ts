@@ -15,11 +15,17 @@ export const clearImages = () => {
     }
 }
 
-export function asyncUpdateImages () {
+export function asyncUpdateImages() {
+    const imageObj = {
+        image: snowImage,
+        hasRecord: false,
+        record: '',
+        number: 1
+    }
     return dispatch => {
-        setTimeout(()=>{
-            dispatch(updateImages(snowImage))
-        },2000)
+        setTimeout(() => {
+            dispatch(updateImages(imageObj))
+        }, 2000)
 
     }
 }

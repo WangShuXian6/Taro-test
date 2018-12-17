@@ -115,7 +115,7 @@ class Index extends Component {
 
         }
         console.log('this.props-', this.props)
-        console.log('this.props.images.images.length--', this.props.images.images[0].image)
+        console.log('this.props.images.images[0]--', this.props.images.images[0].image)
     }
 
     uploadingImage(){

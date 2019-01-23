@@ -3,7 +3,7 @@ import Taro, { Component, Config } from '@tarojs/taro'
 import { View,Text} from '@tarojs/components'
 
 import './index.less'
-import { AtIcon,AtMessage ,AtButton} from 'taro-ui'
+import { AtIcon,AtMessage ,AtModal, AtModalHeader, AtModalContent, AtModalAction,AtButton} from 'taro-ui'
 
 type PageStateProps = {
 
@@ -59,6 +59,16 @@ class Index extends Component {
         </AtButton>
 
         <AtMessage />
+
+        <AtModal isOpened>
+          <AtModalHeader>标题</AtModalHeader>
+          <AtModalContent>
+            这里是正文内容，欢迎加入京东凹凸实验室
+            这里是正文内容，欢迎加入京东凹凸实验室
+            这里是正文内容，欢迎加入京东凹凸实验室
+          </AtModalContent>
+          <AtModalAction> <Button>取消</Button> <Button>确定</Button> </AtModalAction>
+        </AtModal>
       </View>
     )
   }

@@ -1,7 +1,7 @@
 {
   "miniprogramRoot": "./dist",
-  "projectname": "async",
-  "description": "async test",
+  "projectname": "answer-searning-mini-program",
+  "description": "answer-searning-mini-program",
   "appid": "touristappid",
   "setting": {
     "urlCheck": true,

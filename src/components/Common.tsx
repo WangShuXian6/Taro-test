@@ -1,18 +1,15 @@
 import React, { Component, useEffect, useLayoutEffect, useReducer, useState, useContext, useRef, useCallback, useMemo, } from 'react'
 import Taro, { useRouter, useTabItemTap, useResize, useReachBottom, usePullDownRefresh, useDidHide, useDidShow, usePageScroll } from '@tarojs/taro'
 import { View, Text, Canvas, Image } from '@tarojs/components'
-import './index.less'
+import './Common.less'
+type Props = {
 
-//components
-import Common from '../../components/Common'
-
-export default function Index() {
+}
+export default function Common({ }: Props) {
 
   return (
-    <View className='index'>
-      <Text>Hello world!</Text>
-      <Text>Hello world!</Text>
-      <Common></Common>
+    <View className='common-container'>
+      common
     </View>
   )
 }

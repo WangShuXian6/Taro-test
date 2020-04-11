@@ -9,9 +9,8 @@ import Common from '../../components/Common'
 export default function Index() {
 
   return (
-    <View className='index'>
-      <Text>Hello world!</Text>
-      <Text>Hello world!</Text>
+    <View className='second'>
+      second
       <Common></Common>
     </View>
   )
